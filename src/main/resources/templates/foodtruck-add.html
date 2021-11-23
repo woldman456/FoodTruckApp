@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<link rel="stylesheet" type="text/css"
+      th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+<Title>Add Food Truck</Title>
+
+</head>
+<body>
+
+
+<div th:insert="navbar :: navbar">  </div>
+<form th:action="@{/foodtrucks/save}" th:object="${newTruck}"  th:method="post">
+    <div class="form-row">
+        <div class="col-md-6 form-group">
+            <label>Truck Name</label>
+            <label>
+                <input type="text" class="form-control" th:field="*{truckName}">
+            </label>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Truck Location</label>
+            <label>
+                <input type="text" class="form-control" th:field="*{location}">
+            </label>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Truck Menu</label>
+            <label>
+                <input type="text" class="form-control" th:field="*{menu}">
+            </label>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Day Of Week</label>
+            <label>
+                <input type="text" class="form-control" th:field="*{dayOfWeek}">
+            </label>
+        </div>
+        <div class="col-md-6 form-group">
+            <label>Phone Number</label>
+            <label>
+                <input type="text" class="form-control" th:field="*{phone}">
+            </label>
+        </div>
+        <input th:action="@{/foodtrucks/save}" type="submit" th:method="post">
+    </div>
+</form>
+
+
+<script type="text/javascript"
+        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</body>
+
+
+</html>

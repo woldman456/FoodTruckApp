@@ -1,0 +1,60 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div th:insert="navbar :: navbar"></div>
+<h1>Food Truck List</h1>
+
+<div>
+        <div>
+            <a th:href="@{/foodtrucks/}">List Food Trucks</a>
+        </div>
+        <div>
+            <a sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/foodtrucks/add}">Add Foodtruck</a></a>
+        </div>
+        <div>
+            <a th:href="@{/}">Back to Index</a>
+        </div>
+</div>
+<br/><br/>
+<div>
+    <table border="1">
+        <tr>
+            <th sec:authorize="hasRole('ROLE_ADMIN')">Truck ID number</th>
+            <th>Truck Name</th>
+            <th>Location</th>
+            <th>Menu</th>
+            <th>Day Of Week</th>
+            <th>Phone Number</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')">Edit</th>
+            <th sec:authorize="hasRole('ROLE_ADMIN')">Delete</th>
+            <th>Comment</th>
+        </tr>
+        <tr th:each="truckProfile : ${truckProfiles}">
+            <td sec:authorize="hasRole('ROLE_ADMIN')"><span th:text="${truckProfile.truckid}"></span></td>
+            <td><span th:text="${truckProfile.truckName}"></span></td>
+            <td><span th:text="${truckProfile.location}"></span></td>
+            <td><span th:text="${truckProfile.menu}"></span></td>
+            <td><span th:text="${truckProfile.dayOfWeek}"></span></td>
+            <td><span th:text="${truckProfile.phone}"></span></td>
+            <td sec:authorize="hasRole('ROLE_ADMIN')"><a
+                    th:href="@{/foodtrucks/{truckid}/edit(truckid=${truckProfile.truckid})}">Edit</a></td>
+            <td sec:authorize="hasRole('ROLE_ADMIN')"><a
+                    th:href="@{/foodtrucks/{truckProfileId}(truckProfileId=${truckProfile.truckid})}">Delete</a></td>
+            <td><a
+                    th:href="@{/foodtrucks/{truckProfileId}/comment(truckProfileId=${truckProfile.truckid})}">Comment</a></td>
+        </tr>
+    </table>
+</div>
+<br/><br/>
+<div>
+</div>
+</body>
+</html>

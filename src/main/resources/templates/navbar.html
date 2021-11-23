@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+    <meta charset="UTF-8">
+    <title>NavigationBar</title>
+
+</head>
+<body>
+
+<nav th:fragment="navbar" class="navbar navbar-expand-md bg-dark navbar-dark">
+    <div class="container-fluid">
+        <div class="navbar-header">
+        </div>
+        <ul class="nav navbar-nav">
+            <li sec:authorize="isAuthenticated()"> <a class="navbar-brand" th:href="@{/user/}">My Profile</a></li>
+
+            <li sec:authorize="hasRole('ROLE_ADMIN')"><a class="nav-link" th:href="@{/admin}">Admin Panel</a></li>
+
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/foodtrucks/}">Search Food Trucks</a></li>
+
+            <li sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/foodtrucks/add}">Add Food Trucks</a></li>
+
+            <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+</body>
+</html>

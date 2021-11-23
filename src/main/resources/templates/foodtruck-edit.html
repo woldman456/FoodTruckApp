@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" type="text/css"
+        th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+  <Title>Edit Food Truck</Title>
+</head>
+<body>
+<div th:insert="navbar :: navbar">  </div>
+<h1>Food Truck Edit</h1>
+
+<form th:action="@{/foodtrucks/{truckProfileId}/edit(truckProfileId=${oldTruckProfile.get().getTruckid()})}"
+      th:object="${oldTruckProfile}" th:method="post">
+  <div class="form-row">
+    <div class="col-md-6 form-group">
+      <label>Truck Name</label>
+      <label>
+        <input type="text" class="form-control" name="truckName" th:value="*{get().truckName}">
+      </label>
+    </div>
+    <div class="col-md-6 form-group">
+      <label>Truck Location</label>
+      <label>
+        <input type="text" class="form-control" name="location" th:value="*{get().location}">
+      </label>
+    </div>
+    <div class="col-md-6 form-group">
+      <label>Truck Menu</label>
+      <label>
+        <input type="text" class="form-control" name="menu" th:value="*{get().menu}">
+      </label>
+    </div>
+    <div class="col-md-6 form-group">
+      <label>Day Of Week</label>
+      <label>
+        <input type="text" class="form-control" name="dayOfWeek" th:value="*{get().dayOfWeek}">
+      </label>
+    </div>
+    <div class="col-md-6 form-group">
+      <label>Phone Number</label>
+      <label>
+        <input type="text" class="form-control" name="phone" th:value="*{get().phone}">
+      </label>
+    </div>
+    <input type="submit">
+  </div>
+</form>
+</body>
+</html>

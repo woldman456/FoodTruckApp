@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title></title>
+
+    <!--/*/ <th:block th:include="fragments/headerincStudent :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/headerStudent :: header"></th:block> /*/-->
+
+    <h2>Search for user</h2>
+    <form th:object="${user.id}" th:action="@{/admin/id}" method="get">
+        <input type="text" name="search" id="search" th:value="${search}"/>
+        <input type="submit" value="Search"/>
+        <div th:if="${not #lists.isEmpty(search)}">
+            <h2>User Search Result</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Active Status</th>
+                </tr>
+                <tr th:each="user: ${search}">
+                    <td th:text="${user.id}"><a href="/user/${user.id}">ID</a></td>
+                    <td th:text="${user.firstName}">First Name</td>
+                    <td th:text="${user.lastName}">Last Name</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+</body>
+</html>
